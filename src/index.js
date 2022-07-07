@@ -44,7 +44,6 @@ let dateTime = document.querySelector("#date-time");
 dateTime.innerHTML = formatDate(currentTime);
 
 function displayWeather(response) {
-  console.log(response);
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#country").innerHTML = response.data.sys.country;
   document.querySelector("#temperature").innerHTML = Math.round(
