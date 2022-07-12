@@ -93,3 +93,12 @@ h5 {
   cursor: default;
   text-decoration: none;
 }
+
+.source-link {
+  text-decoration: underline;
+}
+
+.source-link:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
