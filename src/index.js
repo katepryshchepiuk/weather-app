@@ -1,7 +1,6 @@
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let currentDate = date.getDate();
-  let hours = date.getHours();
   let days = [
     "Sunday",
     "Monday",
@@ -11,7 +10,6 @@ function formatDate(timestamp) {
     "Saturday"
   ];
   let day = days[date.getDay()];
-  let minutes = date.getMinutes();
   let months = [
     "January",
     "February",
