@@ -1,7 +1,7 @@
-let currentTime = new Date();
-
-function formatDate(date) {
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
   let currentDate = date.getDate();
+  let hours = date.getHours();
   let days = [
     "Sunday",
     "Monday",
@@ -10,7 +10,8 @@ function formatDate(date) {
     "Thursday",
     "Saturday"
   ];
-  let currentDay = days[date.getDay()];
+  let day = days[date.getDay()];
+  let minutes = date.getMinutes();
   let months = [
     "January",
     "February",
@@ -25,25 +26,13 @@ function formatDate(date) {
     "November",
     "December"
   ];
-  let currentMonth = months[date.getMonth()];
-  let currentHours = date.getHours();
-  let currentMinutes = date.getMinutes();
-  let amPm = "AM";
-  if (currentHours > 13) {
-    amPm = "PM";
-    currentHours = `${currentHours}` - 12;
-  }
-  if (currentMinutes < 10) {
-    currentMinutes = `0${currentMinutes}`;
-  }
-  let formattedDate = `${currentDay} ${currentDate} ${currentMonth}, ${currentHours}:${currentMinutes} ${amPm}`;
-  return formattedDate;
+  let month = months[date.getMonth()];
+  let time = new Date(timestamp).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+  return `${day} ${currentDate} ${month}, ${time}`;
 }
 
-let dateTime = document.querySelector("#date-time");
-dateTime.innerHTML = formatDate(currentTime);
-
 function displayWeather(response) {
+  console.log(response);
   celsiusTemperature = Math.round(response.data.main.temp);
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#country").innerHTML = response.data.sys.country;
@@ -77,17 +66,21 @@ function displayWeather(response) {
   document.querySelector("#icon").setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   document.querySelector("#icon").setAttribute('alt', response.data.weather[0].description);
 
+  document.querySelector("#date-time").innerHTML = formatDate(response.data.dt*1000);
+
+
+
   let unixTimestampSunrise = response.data.sys.sunrise;
   let dateSunrise = new Date(unixTimestampSunrise * 1000);
   let hoursSunrise = dateSunrise.getHours();
   let minutesSunrise = "0" + dateSunrise.getMinutes();
-  let formattedTimeSunrise = `${hoursSunrise}:${minutesSunrise.substr(-2)}`;
+  let formattedTimeSunrise = `${hoursSunrise}:${minutesSunrise(-2)}`;
 
   let unixTimestampSunset = response.data.sys.sunset;
   let dateSunset = new Date(unixTimestampSunset * 1000);
   let hoursSunset = dateSunset.getHours() - 12;
   let minutesSunset = "0" + dateSunset.getMinutes();
-  let formattedTimeSunset = `${hoursSunset}:${minutesSunset.substr(-2)}`;
+  let formattedTimeSunset = `${hoursSunset}:${minutesSunset(-2)}`;
 
   document.querySelector("#sunrise").innerHTML = formattedTimeSunrise;
   document.querySelector("#sunset").innerHTML = formattedTimeSunset;
