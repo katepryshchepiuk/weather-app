@@ -63,22 +63,19 @@ function displayWeather(response) {
   );
   document.querySelector("#icon").setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   document.querySelector("#icon").setAttribute('alt', response.data.weather[0].description);
-
   document.querySelector("#date-time").innerHTML = formatDate(response.data.dt*1000);
 
-
-
   let unixTimestampSunrise = response.data.sys.sunrise;
-  let dateSunrise = new Date(unixTimestampSunrise * 1000);
+  let dateSunrise = new Date(unixTimestampSunrise * 1000).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
   let hoursSunrise = dateSunrise.getHours();
-  let minutesSunrise = "0" + dateSunrise.getMinutes();
-  let formattedTimeSunrise = `${hoursSunrise}:${minutesSunrise(-2)}`;
+  let minutesSunrise = dateSunrise.getMinutes();
+  let formattedTimeSunrise = `${hoursSunrise}:${minutesSunrise}`;
 
   let unixTimestampSunset = response.data.sys.sunset;
-  let dateSunset = new Date(unixTimestampSunset * 1000);
-  let hoursSunset = dateSunset.getHours() - 12;
-  let minutesSunset = "0" + dateSunset.getMinutes();
-  let formattedTimeSunset = `${hoursSunset}:${minutesSunset(-2)}`;
+  let dateSunset = new Date(unixTimestampSunset * 1000).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+  let hoursSunset = dateSunset.getHours();
+  let minutesSunset = dateSunset.getMinutes();
+  let formattedTimeSunset = `${hoursSunset}:${minutesSunset}`;
 
   document.querySelector("#sunrise").innerHTML = formattedTimeSunrise;
   document.querySelector("#sunset").innerHTML = formattedTimeSunset;
