@@ -104,4 +104,7 @@ h5 {
       cursor: pointer;
       color: white;
 }
-  
+
+#description:first-letter {
+  text-transform: capitalize;
+}

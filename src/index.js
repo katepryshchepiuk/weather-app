@@ -73,18 +73,20 @@ function displayWeather(response) {
   document.querySelector("#pressure").innerHTML = Math.round(
     response.data.main.pressure
   );
+  document.querySelector("#icon").setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  document.querySelector("#icon").setAttribute('alt', response.data.weather[0].description);
 
   let unixTimestampSunrise = response.data.sys.sunrise;
   let dateSunrise = new Date(unixTimestampSunrise * 1000);
   let hoursSunrise = dateSunrise.getHours();
   let minutesSunrise = "0" + dateSunrise.getMinutes();
-  let formattedTimeSunrise = `${hoursSunrise} : ${minutesSunrise.substr(-2)}`;
+  let formattedTimeSunrise = `${hoursSunrise}:${minutesSunrise.substr(-2)}`;
 
   let unixTimestampSunset = response.data.sys.sunset;
   let dateSunset = new Date(unixTimestampSunset * 1000);
   let hoursSunset = dateSunset.getHours() - 12;
   let minutesSunset = "0" + dateSunset.getMinutes();
-  let formattedTimeSunset = `${hoursSunset} : ${minutesSunset.substr(-2)}`;
+  let formattedTimeSunset = `${hoursSunset}:${minutesSunset.substr(-2)}`;
 
   document.querySelector("#sunrise").innerHTML = formattedTimeSunrise;
   document.querySelector("#sunset").innerHTML = formattedTimeSunset;
