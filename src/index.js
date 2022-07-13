@@ -1,3 +1,29 @@
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row g-2 m-4">`;
+  let days = ["Today", "Tomorrow", "Wednesday", "Thursday", "Friday", "Saturday"];
+  days.forEach(function(day) {
+    forecastHTML = forecastHTML + `
+			<div class="col-md-2">
+			  <div class="card text-center text-white">
+					<div class="card-body">
+						<h5 clas="card-title day">${day}</h5>
+						<i class="bi bi-brightness-high-fill text-white icon"></i>
+						<p class="card-text p-2">23° <span class="min">12°</span></p>
+					</div>
+				</div>
+			</div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
+
+
+
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let currentDate = date.getDate();
@@ -141,3 +167,62 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 let celsiusTemperature = null;
+
+/*
+		  <div class="row g-2 m-4">
+			<div class="col-md-2">
+			  <div class="card text-center text-white">
+					<div class="card-body">
+						<h5 clas="card-title day">Today</h5>
+						<i class="bi bi-brightness-high-fill text-white icon"></i>
+						<p class="card-text p-2">23° <span class="min">12°</span></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+					<div class="card text-center text-white">
+						<div class="card-body">
+							<h5 clas="card-title day">Tomorrow</h5>
+							<i class="bi bi-cloud-fill icon"></i>
+							<p class="card-text p-2">23° <span class="min">12°</span></p>
+						</div>
+					</div>
+			</div>
+			<div class="col-md-2">
+				<div class="card text-center text-white">
+					<div class="card-body">
+						<h5 clas="card-title day">Wednesday</h5>
+						<i class="bi bi-cloud-fill icon"></i>
+						<p class="card-text p-2">23° <span class="min">12°</span></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="card text-center text-white">
+					<div class="card-body">
+						<h5 clas="card-title day">Thursday</h5>
+						<i class="bi bi-cloud-fill icon"></i>
+						<p class="card-text p-2">23° <span class="min">12°</span></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+			  <div class="card text-center text-white">
+					<div class="card-body">
+						<h5 clas="card-title day">Friday</h5>
+						<i class="bi bi-cloud-rain-fill icon"></i>
+						<p class="card-text p-2">23° <span class="min">12°</span></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="card text-center text-white">
+					<div class="card-body">
+						<h5 clas="card-title day">Saturday</h5>
+						<i class="bi bi-cloud-lightning-rain-fill icon"></i>
+						<p class="card-text p-2">23° <span class="min">12°</span></p>
+					</div>
+				</div>
+			</div>
+		  </div>
+      */
