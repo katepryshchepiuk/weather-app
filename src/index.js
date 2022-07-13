@@ -1,6 +1,6 @@
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
-
   let forecastHTML = `<div class="row g-2 m-4">`;
   let days = ["Today", "Tomorrow", "Wednesday", "Thursday", "Friday", "Saturday"];
   days.forEach(function(day) {
@@ -19,10 +19,6 @@ function displayForecast() {
 
   forecastElement.innerHTML = forecastHTML;
 }
-
-displayForecast();
-
-
 
 function formatDate(timestamp) {
   let date = new Date(timestamp);
@@ -55,8 +51,15 @@ function formatDate(timestamp) {
   return `${day} ${currentDate} ${month}, ${time}`;
 }
 
+function getForecast(coordinates) {
+  let apiKey = "748b99007354394700eb99611308d6a0";
+  let units = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+
 function displayWeather(response) {
-  console.log(response);
   celsiusTemperature = Math.round(response.data.main.temp);
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#country").innerHTML = response.data.sys.country;
@@ -90,6 +93,8 @@ function displayWeather(response) {
   document.querySelector("#icon").setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   document.querySelector("#icon").setAttribute('alt', response.data.weather[0].description);
   document.querySelector("#date-time").innerHTML = formatDate(response.data.dt*1000);
+
+  getForecast(response.data.coord);
 
   let unixTimestampSunrise = response.data.sys.sunrise;
   let dateSunrise = new Date(unixTimestampSunrise * 1000).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
