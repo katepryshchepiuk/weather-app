@@ -1,25 +1,3 @@
-function displayForecast(response) {
-  console.log(response.data.daily);
-  let forecastElement = document.querySelector("#forecast");
-  let forecastHTML = `<div class="row g-2 m-4">`;
-  let days = ["Today", "Tomorrow", "Wednesday", "Thursday", "Friday", "Saturday"];
-  days.forEach(function(day) {
-    forecastHTML = forecastHTML + `
-			<div class="col-md-2">
-			  <div class="card text-center text-white">
-					<div class="card-body">
-						<h5 clas="card-title day">${day}</h5>
-						<i class="bi bi-brightness-high-fill text-white icon"></i>
-						<p class="card-text p-2">23° <span class="min">12°</span></p>
-					</div>
-				</div>
-			</div>`;
-  });
-  forecastHTML = forecastHTML + `</div>`;
-
-  forecastElement.innerHTML = forecastHTML;
-}
-
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let currentDate = date.getDate();
@@ -29,6 +7,7 @@ function formatDate(timestamp) {
     "Tuesday",
     "Wednesday",
     "Thursday",
+    "Friday",
     "Saturday"
   ];
   let day = days[date.getDay()];
@@ -49,6 +28,45 @@ function formatDate(timestamp) {
   let month = months[date.getMonth()];
   let time = new Date(timestamp).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
   return `${day} ${currentDate} ${month}, ${time}`;
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let day = days[date.getDay()];
+  return day;
+}
+
+function displayForecast(response) {
+  console.log(response.data.daily)
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row g-2 m-4">`;
+  forecast.forEach(function(forecastDay, index) {
+    if (index < 6) {
+    forecastHTML = forecastHTML + `
+			<div class="col-md-2">
+			  <div class="card text-center text-white">
+					<div class="card-body">
+						<h5 clas="card-title day">${formatDay(forecastDay.dt)}</h5>
+						<img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="clear sky" id="icon" /img>
+						<p class="card-text p-2 max">${Math.round(forecastDay.temp.max)}° <span class="min"> ${Math.round(forecastDay.temp.min)}°</span></p>
+					</div>
+				</div>
+			</div>`;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordinates) {
