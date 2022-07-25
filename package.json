@@ -4,10 +4,10 @@
   "description": "Simple Parcel Sandbox",
   "main": "index.html",
   "files": [
-    "./img/"
+    "img/"
   ],
   "directories": {
-    "img:": "./img"
+    "img:": "img"
   },
   "scripts": {
     "start": "parcel index.html --open",
