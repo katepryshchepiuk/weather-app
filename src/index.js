@@ -51,27 +51,27 @@ function formatDay(timestamp) {
 function displayIcon(icon) {
   let iconPath = "";
   if (icon === "01d") {
-    iconPath = "img/brightness-high-fill.svg";
+    iconPath = "static/brightness-high-fill.svg";
   } else if (icon === "01n") {
-    iconPath = "img/moon-fill.svg";
+    iconPath = "static/moon-fill.svg";
   } else if (icon === "02d") {
-    iconPath = "img/cloud-sun-fill.svg";
+    iconPath = "static/cloud-sun-fill.svg";
   } else if (icon === "02n") {
-    iconPath = "img/cloud-moon-fill.svg";
+    iconPath = "static/cloud-moon-fill.svg";
   } else if (icon === "03d" || icon === "03n") {
-    iconPath = "img/cloud-fill.svg";
+    iconPath = "static/cloud-fill.svg";
   } else if (icon === "04d" || icon === "04n") {
-    iconPath = "img/clouds-fill.svg";
+    iconPath = "static/clouds-fill.svg";
   } else if (icon === "09d" || icon === "09n") {
-    iconPath = "img/cloud-rain-heavy-fill.svg";
+    iconPath = "static/cloud-rain-heavy-fill.svg";
   } else if (icon === "10d" || icon === "10n") {
-    iconPath = "img/cloud-rain-fill.svg";
+    iconPath = "static/cloud-rain-fill.svg";
   } else if (icon === "11d" || icon === "11n") {
-    iconPath = "img/cloud-lighting-fill.svg";
+    iconPath = "static/cloud-lighting-fill.svg";
   } else if (icon === "13d" || icon === "13n") {
-    iconPath = "img/cloud-snow-fill.svg";
+    iconPath = "static/cloud-snow-fill.svg";
   } else if (icon === "50d" || icon === "50n") {
-    iconPath = "img/cloud-haze-fill.svg";
+    iconPath = "static/cloud-haze-fill.svg";
   }
 
   return iconPath;
