@@ -6,6 +6,9 @@
   "files": [
     "./img/"
   ],
+  "directories": {
+    "assets:": "./img"
+  },
   "scripts": {
     "start": "parcel index.html --open",
     "build": "parcel build index.html"
