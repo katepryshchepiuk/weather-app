@@ -4,102 +4,118 @@
     <title>Weather App</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
 		/>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-		<link rel="stylesheet" href="src/styles.css" />
-		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="src/styles.css" />
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
-    <div class="container">
-      <div class="row m-4 g-2">
-        <div class="col-md-10">
+
+    <div class="container p-4" id="container">
+
+      <div class="row m-4 gx-2">
+        <div class="col-12 col-lg-10 py-1 py-lg-0">
           <form class="input-group" id="city-search">
-							<input
-							  id="city-input"
-                type="text"
-                class="form-control border-white"
-							  placeholder="Search for location (e.g. London, New-York, Paris, Kyiv)"
-							/>
-              <button type="submit" class="btn btn-primary text-white" id="button-addon2">
-                Search
-							</button>
-					</form>
-				</div>
-				<div class="col-md-2">
-					<button type="button" class="btn btn-outline-light" id="current-location-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-fill" viewBox="0 0 16 16">
-								<path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
-							</svg>
-						Current location
-					</button>
-				</div>
+			<input id="city-input" type="text"class="form-control border-white" placeholder="Search for location (e.g. London, New-York, Paris, Kyiv)"/>
+            <button type="submit" class="btn btn-primary text-white" id="button-addon2">
+				<span class="px-1">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+						viewBox="0 0 16 16">
+						<path
+							d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+					</svg>
+				</span>
+				Search
+			</button>
+		  </form>
+		</div>
+		<div class="col-12 col-lg-2 py-1 py-lg-0">
+		  <button type="button" class="btn btn-outline-light w-100" id="current-location-button">
+			<span class="px-1">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-fill"
+					viewBox="0 0 16 16">
+					<path fill-rule="evenodd"
+						d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z" />
+				</svg>
+			</span>
+			My location
+		  </button>
+		</div>
       </div>
   
 
-      <div class="row g-4 m-4">
-				<div class="col-12">
-					<h2 class="text-white bold"><span id="city">Rotterdam</span><span>, </span><span id="country">NL</span></h2>
-					<p class="text-white">Last update: <span id="date-time"></span></p>
-				</div>
-			</div>
-
-			<div class="row p-2 m-4 g-2">
-				<div class="col-md-4">
-					<div class="row p-2 g-2">
-						<div class="col-md-4">
-							<img src="" alt="clear sky" class="float-left" id="icon"></img>
-						</div>
-						<div class="col-md-8">
-								<div class="weather-temperature">
-								  <span class="text-white temperature" id="temperature">21</span>
-								  <span class="units">
-									  <a href="#" class="text-white active" id="celsius-link">°C</a> 
-									  <span class="text-white">|</span>
-									  <a href="#" class="text-white" id="fahrenheit-link">°F</a>
-									</span>
-								</div>
-								<div>
-									<p class="text-white" id="description">Sunny</p>
-									<p class="text-white">H:<span id="max">23</span>°C L:<span id="min">12</span>°C</p>
-								</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4">
-					<div class="text-white p-2">
-						<p><i class="bi bi-thermometer-half pe-2"></i></i>Real feel: <span id="real-feel"> 20</span>°C</p>
-						<p><i class="bi bi-cloud-fill pe-2"></i>Clouds: <span id="rainfall">2</span>%</p>
-						<p><i class="bi bi-water pe-2"></i>Humidity: <span id="humidity">60</span>%</p>
-						<p><i class="bi bi-eye pe-2"></i>Visibility: <span id="visibility">13</span> km</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4">
-					<div class="text-white p-2">
-						<p><i class="bi bi-wind pe-2"></i></i>Wind: <span id="wind">5</span> km/h</p>
-						<p><i class="bi bi-arrow-down pe-2"></i>Pressure: <span id="pressure">1.012</span> hPa</p>
-						<p><i class="bi bi-sunrise pe-2"></i>Sunrise: <span id="sunrise">5:22</span> AM</p>
-						<p><i class="bi bi-sunset pe-2"></i></i>Sunset: <span id="sunset">10:03</span> PM</p>
-					</div>
-				</div>
-			</div>
-
-		<div class="weather-forecast" id="forecast">
+      <div class="row mx-4 my-5 gx-2">
+		<div class="col-12 col-lg-12">
+		  <h2 class="text-white bold"><span id="city">Rotterdam</span><span>, </span><span id="country">NL</span></h2>
+		  <p class="text-white m-0"><span id="date-time"></span></p>
 		</div>
+	  </div>
 
-		<footer class="m-4 text-white">
-			<p class="coder"><a href="https://github.com/katepryshchepiuk/weather-app" class="source-link text-white" target="_blank">Open-source code</a> by Kate Pryshchepiuk</p>
-		</footer>
-		
+	  <div class="row m-4 gx-2">
+		<div class="col-12 col-lg-4 py-2 py-lg-0">
+			<div class="row">
+				<div class="col-12 col-lg-4 py-4 py-lg-0">
+					<img src="" alt="clear-sky" class="icon" id="icon"></img>
+				</div>
+				<div class="col-12 col-lg-8">
+					<div class="weather-temperature">
+						<span class="text-white temperature" id="temperature">21</span>
+						<span class="units">
+							<a href="#" class="text-white active" id="celsius-link">°C</a>
+							<span class="text-white">|</span>
+							<a href="#" class="text-white" id="fahrenheit-link">°F</a>
+						</span>
+					</div>
+					<div>
+						<p class="text-white" id="description">Sunny</p>
+						<p class="text-white">
+							<span>H:<span id="max">23</span><span id="unit-max">°C</span></span>
+							<span>L:<span id="min">10</span><span id="unit-min">°C</span></span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	    <div class="col-12 col-lg-4 py-2 py-lg-0">
+			<div class="text-white">
+				<p><i class="bi bi-thermometer-half pe-2"></i>Real feel: <span id="real-feel"> 20</span><span id="unit-feel">°C</span></p>
+				<p><i class="bi bi-cloud-fill pe-2"></i>Clouds: <span id="rainfall">2</span>%</p>
+				<p><i class="bi bi-water pe-2"></i>Humidity: <span id="humidity">60</span>%</p>
+				<p><i class="bi bi-eye pe-2"></i>Visibility: <span id="visibility">13</span> km</p>
+			</div>
+		</div>
+		<div class="col-12 col-lg-4 py-2 py-lg-0">
+			<div class="text-white">
+				<p><i class="bi bi-wind pe-2"></i></i>Wind: <span id="wind">5</span> km/h</p>
+				<p><i class="bi bi-arrow-down pe-2"></i>Pressure: <span id="pressure">1.012</span> hPa</p>
+				<p><i class="bi bi-sunrise pe-2"></i>Sunrise: <span id="sunrise">5:22</span></p>
+				<p><i class="bi bi-sunset pe-2"></i></i>Sunset: <span id="sunset">10:03</span></p>
+			</div>
+		</div>
+	</div>
+
+	<div class="weather-forecast" id="forecast">
+	</div>
+
+	<footer class="row m-4 gx-2">
+		<div class="text-white">
+			<p class="coder my-0">
+				<a href="https://github.com/katepryshchepiuk/weather-app" class="source-link text-white"target="_blank">Open-source code</a> by Kate Pryshchepiuk
+			</p>
+		</div>
+	</footer>
+
     <script src="src/index.js"></script>
+
   </body>
 </html>
 

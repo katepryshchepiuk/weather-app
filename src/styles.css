@@ -1,61 +1,86 @@
-.bi-brightness-high-fill {
-  font-size: 80px;
-}
-.bold {
-  font-weight: bold;
-}
-
-.list-group-item {
-  width: 300px;
+body {
+  font-family: 'Noto Sans', sans-serif;
 }
 
 .container {
   display: block;
   border: 0;
   max-width: 1200px;
+  margin: 20px auto;
+  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
 }
 
-body {
-  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/037/919/original/bonnie-kitahata-9aHj3ZAETNA-unsplash.jpg?1655747365");
-  height: 100%;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-family: sans-serif;
+.day {
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.night {
+  background-image: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
+}
+
+#icon {
+  width: 80px;
+  height: 80px;
+}
+
+.icon {
+  font-size: 24px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.list-group-item {
+  width: 300px;
 }
 
 .temperature {
   font-size: 56px;
+  line-height: 100%;
   font-weight: 500;
 }
 
 .card {
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
   border: none;
+}
+
+input {
+  border-radius: 24px;
 }
 
 .btn-primary {
   border: none;
-  background-color: rgb(52, 52, 187);
+  background-color: #2b43ab;
+  width: 172px;
 }
 
-.btn-outline-light:focus {
-  color: rgb(52, 52, 187);
-  box-shadow: none;
-  outline: none;
+.btn-primary:hover {
+  background-color: #0a2084;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:focus {
+  background-color: #0a2084;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-light {
+  color: white;
 }
 
 .btn-outline-light:hover {
-  color: rgb(52, 52, 187);
-  box-shadow: none;
-  outline: none;
+  color: #0a2084;
+  background-color: white;
+  transition: all 0.2s ease;
 }
 
-.btn-outline-light:active {
-  color: rgb(52, 52, 187);
-  box-shadow: none;
-  outline: none;
+.btn-outline-light:focus {
+  color: #0a2084;
+  background-color: white;
+  transition: all 0.2s ease;
 }
 
 .coder {
@@ -66,14 +91,11 @@ body {
 h5 {
   font-size: 16px;
   font-weight: 400;
+  margin-bottom: 1em;
 }
 
 .min {
   opacity: 60%;
-}
-
-.icon {
-  font-size: 24px;
 }
 
 .units {
@@ -85,6 +107,10 @@ h5 {
   text-transform: capitalize;
 }
 
+.weather-temperature {
+  margin-bottom: 1em;
+}
+
 .weather-temperature .active {
   text-decoration: none;
 }
@@ -92,6 +118,7 @@ h5 {
 .weather-temperature .active:hover {
   cursor: default;
   text-decoration: none;
+  transition: all 0.2s ease;
 }
 
 .source-link {
@@ -101,4 +128,5 @@ h5 {
 .source-link:hover {
   text-decoration: none;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
