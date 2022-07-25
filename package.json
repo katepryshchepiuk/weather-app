@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "Simple Parcel Sandbox",
   "main": "index.html",
-  "files": [
-    "img/"
-  ],
-  "directories": {
-    "img:": "img"
+  "staticFiles": {
+   "staticPath": ["img"]
   },
   "scripts": {
     "start": "parcel index.html --open",
@@ -16,6 +13,7 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "7.2.0",
-    "parcel-bundler": "^1.6.1"
+    "parcel-bundler": "^1.6.1",
+    "parcel-plugin-static-files-copy": "2.6.0"
   }
 }
